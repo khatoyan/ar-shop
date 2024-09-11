@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Furniture Catalog</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/catalog.js" defer></script>
+</head>
+<body>
+    <h1>AR Furniture Catalog</h1>
+    <input type="text" id="search" placeholder="Введите артикул">
+    <button id="searchBtn">Найти</button>
+    
+    <div class="category-slider">
+        <button class="prev" onclick="slideCategory(-1)">&#10094;</button>
+        <div class="category-container" id="categoryContainer"></div>
+        <button class="next" onclick="slideCategory(1)">&#10095;</button>
+    </div>
+    
+    <div class="model-slider" id="modelSlider">
+        <button class="prev" onclick="slideModel(-1)">&#10094;</button>
+        <div class="model-container" id="modelContainer"></div>
+        <button class="next" onclick="slideModel(1)">&#10095;</button>
+    </div>
+
+    <a-scene embedded arjs>
+        <a-marker preset='hiro'>
+            <a-entity id="modelEntity"></a-entity>
+        </a-marker>
+        <a-entity camera></a-entity>
+    </a-scene>
+
+    <script>
+        if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            document.body.innerHTML = '<h1>Для отображения контента, пожалуйста, зайдите через смартфон</h1>';
+        }
+    </script>
+</body>
+</html>
