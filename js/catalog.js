@@ -11,7 +11,7 @@ function loadCategories() {
         .then(response => response.json())
         .then(data => {
             const categories = [...new Set(data.map(item => item.category))];
-            const categoryContainer = document.getElementById('categoryContainer');
+            const categoryContainer = document.getElementById('categoryContainer');categoryContainer.innerHTML = '';
 
             categories.forEach(category => {
                 const div = document.createElement('div');
@@ -29,7 +29,7 @@ function loadModelsByCategory(category) {
         .then(data => {
             const models = data.filter(item => item.category === category);
             const modelContainer = document.getElementById('modelContainer');
-            modelContainer.innerHTML = ''; // Очистим контейнер перед добавлением новых моделей
+            modelContainer.innerHTML = '';
 
             models.forEach(model => {
                 const div = document.createElement('div');
@@ -48,7 +48,7 @@ function slideCategory(direction) {
     container.style.transform = translateX(`${-currentCategoryIndex * items[0].offsetWidth}px`);
 }
 
-function functionslideModel(direction) {
+function slideModel(direction) {
     const container = document.getElementById('modelContainer');
     const items = document.querySelectorAll('.model-item');
     currentModelIndex = Math.max(0, Math.min(currentModelIndex + direction, items.length - 1));
@@ -58,11 +58,11 @@ function functionslideModel(direction) {
 function displayModel(modelPath) {
     const modelEntity = document.getElementById('modelEntity');
     modelEntity.setAttribute('gltf-model', modelPath);
-    modelEntity.setAttribute('scale', '0.5 0.5 0.5');
+    modelEntity.object3D.visible = true;
 }
 
 function searchModelByCode() {
-    const searchValue = document.getElementById('search').value;
+    const searchValue = document.getElementById('search').value.trim();
 
     fetch('models.json')
         .then(response => response.json())
@@ -75,4 +75,4 @@ function searchModelByCode() {
                 alert('Модель не найдена');
             }
         });
-    }
+}
