@@ -1,0 +1,17 @@
+[
+    {
+        "code": "12345",
+        "category": "sofa",
+        "path": "/models/model1.glb"
+    },
+    {
+        "code": "67890",
+        "category": "table",
+        "path": "/models/model2.glb"
+    },
+    {
+        "code": "6789",
+        "category": "table",
+        "path": "/models/model3.glb"
+    }
+]
