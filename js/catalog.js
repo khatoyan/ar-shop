@@ -11,7 +11,10 @@ function loadCategories() {
         .then(response => response.json())
         .then(data => {
             const categories = [...new Set(data.map(item => item.category))];
-            const categoryContainer = document.getElementById('categoryContainer');categoryContainer.innerHTML = '';
+            const categoryContainer = document.getElementById('categoryContainer');
+            categoryContainer.innerHTML = '';
+
+            console.log('Categories loaded:', categories); // Отладка
 
             categories.forEach(category => {
                 const div = document.createElement('div');
@@ -20,7 +23,8 @@ function loadCategories() {
                 div.onclick = () => loadModelsByCategory(category);
                 categoryContainer.appendChild(div);
             });
-        });
+        })
+        .catch(error => console.error('Error loading categories:', error));
 }
 
 function loadModelsByCategory(category) {
@@ -31,6 +35,8 @@ function loadModelsByCategory(category) {
             const modelContainer = document.getElementById('modelContainer');
             modelContainer.innerHTML = '';
 
+            console.log(`Models for category ${category}:`, models); // Отладка
+
             models.forEach(model => {
                 const div = document.createElement('div');
                 div.className = 'model-item';
@@ -38,7 +44,8 @@ function loadModelsByCategory(category) {
                 div.onclick = () => displayModel(model.path);
                 modelContainer.appendChild(div);
             });
-        });
+        })
+        .catch(error => console.error('Error loadingmodels:', error));
 }
 
 function slideCategory(direction) {
@@ -58,7 +65,7 @@ function slideModel(direction) {
 function displayModel(modelPath) {
     const modelEntity = document.getElementById('modelEntity');
     modelEntity.setAttribute('gltf-model', modelPath);
-    modelEntity.object3D.visible = true;
+    console.log(`Displaying model: ${modelPath}`); // Отладка
 }
 
 function searchModelByCode() {
@@ -71,8 +78,11 @@ function searchModelByCode() {
 
             if (model) {
                 displayModel(model.path);
+                console.log(`Model found: ${model.path}`); // Отладка
             } else {
                 alert('Модель не найдена');
+                console.error('Model not found for code:', searchValue); // Отладка
             }
-        });
+        })
+        .catch(error => console.error('Error searching model by code:', error));
 }

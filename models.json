@@ -2,16 +2,16 @@
     {
         "code": "12345",
         "category": "sofa",
-        "path": "/models/model1.glb"
+        "path": "models/model1.glb"
     },
     {
         "code": "67890",
         "category": "table",
-        "path": "/models/model2.glb"
-    },
+        "path": "models/model2.glb"
+    }, 
     {
-        "code": "6789",
+        "code": "101112",
         "category": "table",
-        "path": "/models/model3.glb"
+        "path": "models/model3.glb"
     }
 ]
